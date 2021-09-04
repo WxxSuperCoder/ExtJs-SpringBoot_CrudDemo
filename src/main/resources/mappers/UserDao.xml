@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dao.UserDao">
+
+    <select id="getAll" resultType="com.demo.domain.User">
+        select *
+        from t_user
+    </select>
+
+    <delete id="delete">
+        delete
+        from t_user
+        where id = #{id}
+    </delete>
+
+    <insert id="add">
+        insert into t_user(name, sex, birthday, edu, memo)
+        VALUES (#{name}, #{sex}, #{birthday}, #{edu}, #{memo})
+    </insert>
+
+    <select id="getByName" resultType="com.demo.domain.User">
+        select *
+        from t_user
+        where name like '%' #{name} '%'
+    </select>
+
+    <select id="getById" resultType="com.demo.domain.User">
+        select *
+        from t_user
+        where id = #{id};
+    </select>
+
+    <update id="modify">
+        update t_user
+        set name=#{name},
+            sex=#{sex},
+            birthday=#{birthday},
+            edu=#{edu},
+            memo=#{memo}
+        where id = #{id}
+    </update>
+</mapper>
